@@ -2,12 +2,12 @@ package com.example.test.crall.controller;
 
 import com.example.test.crall.dto.NoticeDto;
 import com.example.test.crall.dto.StoreDto;
+import com.example.test.crall.dto.StoreRequestVo;
 import com.example.test.crall.service.UpbitCrawlerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -24,5 +24,10 @@ public class UpbitCrawlerController {
     @GetMapping("/upbit/store")
     public StoreDto crawlUpbitStore() {
         return upbitCrawlerService.crawlUpbitStore();
+    }
+
+    @PostMapping("/kakaoStoreCrwall")
+    public void kakaoStoreCrwall(@RequestBody List<StoreRequestVo> storeRequestVoList) throws Exception{
+        upbitCrawlerService.kakaoStoreCrwall(storeRequestVoList);
     }
 }
